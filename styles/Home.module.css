@@ -1,3 +1,5 @@
+
+
 .container {
   min-height: 100vh;
   padding: 0 0.5rem;
@@ -5,6 +7,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 }
 
 .main {
@@ -14,6 +17,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: var(--colors-text);
 }
 
 .footer {
@@ -36,12 +40,13 @@
 }
 
 .title a {
-  color: #ec3750;
+  color: var(--colors-one), #ec3750;
   text-decoration: none;
 }
 
 .accent {
   color: #ec3750;
+  color: var(--colors-one);
 }
 
 .title a:hover,
@@ -101,6 +106,8 @@
 .card:active {
   color: #ec3750;
   border-color: #ec3750;
+  color: var(--colors-one);
+  border-color: var(--colors-one);
 }
 
 .card h3 {

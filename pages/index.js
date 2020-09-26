@@ -8,23 +8,24 @@ export default function Home(props) {
       <Head>
         <title>Random Hack Clubber</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="stylesheet" href={"https://scrapbook.hackclub.com/api/css?url="+ props.user.css}/>
       </Head>
       <main className={styles.main}>
         <img src={props.user.avatar} className={styles.avatar} />
-        <h1 className={styles.title}>
+        <h1 className={styles.title + ' header-title-name'}>
           Meet <span className={styles.accent}>@{props.user.username}</span>
         </h1>
         <div className={styles.grid}>
           <a
             href={"https://hackclub.slack.com/team/" + props.user.slack}
-            className={styles.card}
+            className={styles.card + ' post'}
           >
             <h3>Message them Slack &rarr;</h3>
             <p>They're on the Hack Club Slack, just like you (I hope)!</p>
           </a>
           <a
             href={"https://scrapbook.hackclub.com/" + props.user.username}
-            className={styles.card}
+            className={styles.card + ' post'}
           >
             <h3>Visit their Scrapbook &rarr;</h3>
             <p>Where Hack Clubbers share what they get up to!</p>
@@ -32,7 +33,7 @@ export default function Home(props) {
           {props.user.github && (
             <a
               href={props.user.github}
-              className={styles.card}
+              className={styles.card + ' post'}
             >
               <h3>Visit their GitHub &rarr;</h3>
               <p>I'm sure it's full of coding projects and a lot of green.</p>
@@ -41,7 +42,7 @@ export default function Home(props) {
           {props.user.website && (
             <a
               href={props.user.website}
-              className={styles.card}
+              className={styles.card + ' post'}
             >
               <h3>Visit their website &rarr;</h3>
               <p>Their little corner of the internet, who knows what you'll find here!</p>
