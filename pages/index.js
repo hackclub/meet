@@ -3,20 +3,17 @@ import styles from "../styles/Home.module.css";
 import fetch from "isomorphic-unfetch";
 
 export default function Home(props) {
-  console.log(props);
   return (
     <div className={styles.container}>
       <Head>
         <title>Random Hack Clubber</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main className={styles.main}>
         <img src={props.user.avatar} className={styles.avatar} />
         <h1 className={styles.title}>
           Meet <span className={styles.accent}>@{props.user.username}</span>
         </h1>
-
         <div className={styles.grid}>
           <a
             href={"https://hackclub.slack.com/team/" + props.user.slack}
@@ -25,7 +22,6 @@ export default function Home(props) {
             <h3>Message them Slack &rarr;</h3>
             <p>They're on the Hack Club Slack, just like you (I hope)!</p>
           </a>
-
           <a
             href={"https://scrapbook.hackclub.com/" + props.user.username}
             className={styles.card}
@@ -53,24 +49,20 @@ export default function Home(props) {
           )}
         </div>
       </main>
-
       <footer className={styles.footer}>
-        Meet a random Hack Clubber, built by @yourname!
+        Meet a random Hack Clubber, built by @sampoder!
       </footer>
     </div>
   );
 }
 
 export async function getServerSideProps(context) {
-  function filterSlugs(object) {
-    return object.fields["Slug"] == params.camp;
-  }
-  const users = await fetch(
+  let users = await fetch(
     "https://scrapbook.hackclub.com/api/users/"
   ).then((r) => r.json());
-  let user = users[10];
-  console.log(user);
+  users = users.filter(u => u.updatesCount > 5)
+  let user = users[Math.floor(Math.random() * users.length)];
   return {
-    props: { user }, // will be passed to the page component as props
+    props: { user },
   };
 }
