@@ -15,7 +15,7 @@ export default function Home(props) {
         <h1 className={styles.title + ' header-title-name'}>
           Meet <span className={styles.accent}>@{props.user.username}</span>
         </h1>
-        <div className={styles.grid}>
+        <div className={styles.grid + ' header-title-name'}>
           <a
             href={"https://hackclub.slack.com/team/" + props.user.slack}
             className={styles.card + ' post'}
@@ -50,7 +50,7 @@ export default function Home(props) {
           )}
         </div>
       </main>
-      <footer className={styles.footer}>
+      <footer className={styles.footer + ' header-title-name'}>
         Meet a random Hack Clubber, built by @sampoder!
       </footer>
     </div>
