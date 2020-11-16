@@ -57,7 +57,7 @@ export default function Home(props) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   let users = await fetch(
     "https://scrapbook.hackclub.com/api/users/"
   ).then((r) => r.json());
