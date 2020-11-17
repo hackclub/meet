@@ -1,7 +1,5 @@
 import Head from "next/head";
-import { useRouter } from 'next/router'
 import styles from "../styles/Home.module.css";
-import fetch from "isomorphic-unfetch";
 
 export default function Home(props) {
   return (
@@ -66,10 +64,13 @@ export async function getServerSidePaths() {
   }
 }
 
-export async function getServerSideProps(context) {
-  console.log("https://scrapbook.hackclub.com/api/users/"+context.params.member)
+export async function getServerSideProps({ params, res }) {
+  if (params.member === "favicon.ico")
+    return { props: {}, notFound: true }
+  
+  console.log("https://scrapbook.hackclub.com/api/users/"+params.member)
   let user = await fetch(
-    "https://scrapbook.hackclub.com/api/users/"+context.params.member
+    "https://scrapbook.hackclub.com/api/users/"+params.member
   ).then((r) => r.json());
   user = user["profile"]
   return {
