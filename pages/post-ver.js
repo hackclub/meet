@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import fetch from "isomorphic-unfetch";
+import fetchUsers from "../lib/fetchUsers"
 
 export default function Home(props) {
   return (
@@ -60,11 +60,7 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps(context) {
-  let users = await fetch(
-    "https://scrapbook.hackclub.com/api/users/"
-  ).then((r) => r.json());
-  
-  users = users.filter(u => u.updatesCount > 5)
+  const users = await fetchUsers();
   let user = users[Math.floor(Math.random() * users.length)];
   console.log("https://scrapbook.hackclub.com/api/user/" + user.username)
   let post = await fetch(
